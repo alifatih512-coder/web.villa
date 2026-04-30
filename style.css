@@ -1795,3 +1795,137 @@ html { scroll-behavior: smooth; }
 .search-content button:hover {
     background-color: #a87e6a;
 }
+/* =======================================================
+   MOBILE & RESPONSIVE FIXES (Layar 900px ke bawah)
+   ======================================================= */
+
+@media screen and (max-width: 900px) {
+    /* --- 1. NAVBAR & MENU (Horizontal Scrollbar Pattern) --- */
+    .navbar {
+        flex-wrap: wrap;
+        padding: 15px 5%;
+        justify-content: space-between;
+    }
+    
+    .logo {
+        order: 1; /* Menjaga Logo di Kiri Atas */
+    }
+    
+    .nav-icons {
+        order: 2; /* Menjaga Icon di Kanan Atas */
+    }
+    
+    /* Mengubah menu menjadi bisa di-scroll ke samping di HP */
+    .nav-links {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 15px 0 5px 0;
+        margin-top: 15px;
+        border-top: 1px solid #f0f0f0;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .nav-links::-webkit-scrollbar {
+        display: none; /* Menyembunyikan scrollbar agar estetik */
+    }
+    
+    .nav-links li {
+        display: inline-block;
+        padding: 0 15px;
+    }
+    
+    /* Merapikan Mega Menu di HP agar ke bawah (Stack) */
+    .mega-menu-inner {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px 5%;
+    }
+    .menu-image {
+        max-width: 100%;
+    }
+
+    /* --- 2. TYPOGRAPHY & HERO SECTIONS --- */
+    .hero-content h2 { font-size: 34px; }
+    .hero-content p { font-size: 15px; margin-bottom: 25px; }
+    
+    .sale-hero { flex-direction: column; text-align: center; padding: 40px 5%; }
+    .sale-hero h2 { font-size: 38px; }
+    .discount-text { font-size: 24px; }
+    .discount-text span { font-size: 50px; }
+    .sale-subtext { font-size: 11px; }
+
+    /* --- 3. LAYOUT FLEXBOX (Menumpuk Elemen ke Bawah) --- */
+    .brand-story {
+        flex-direction: column;
+    }
+    .story-img {
+        height: 350px;
+        width: 100%;
+    }
+    .story-text {
+        padding: 12% 5%;
+        text-align: center;
+    }
+
+    .promo-info-bar {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 5%;
+    }
+    .border-left {
+        border-left: none;
+        border-top: 1px dashed rgba(255, 255, 255, 0.5);
+        padding-left: 0;
+        padding-top: 20px;
+    }
+
+    /* --- 4. BRAND & FLAGSHIP PAGES --- */
+    .fs-zone.split-view {
+        flex-direction: column;
+    }
+    .text-col {
+        padding: 50px 5%;
+        text-align: center;
+    }
+    
+    .brand-origin {
+        flex-direction: column;
+        padding: 60px 5%;
+        text-align: center;
+    }
+    
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Vibe Cards (Test Experience) */
+    .vibe-cards-container {
+        position: relative;
+        flex-wrap: wrap;
+        background: none;
+        padding: 0 5% 50px;
+        gap: 20px;
+        justify-content: center;
+    }
+    .vibe-card {
+        width: 100%;
+        max-width: 280px;
+    }
+    .test-content {
+        margin-top: 100px;
+        margin-bottom: 40px;
+    }
+
+    /* --- 5. SEARCH OVERLAY --- */
+    .search-content {
+        width: 90%;
+    }
+    .search-content h2 {
+        font-size: 24px;
+    }
+    .search-content input {
+        font-size: 16px;
+    }
+}
