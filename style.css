@@ -2136,3 +2136,54 @@ html { scroll-behavior: smooth; }
     /* Sembunyikan ikon Account di Mobile karena sudah ada di dalam Hamburger Menu */
     .account-btn { display: none !important; }
 }
+/* =======================================================
+   TOGGLE TEXT VS ICON (DESKTOP VS MOBILE)
+   ======================================================= */
+
+/* DEFAULT: TAMPILAN DESKTOP (HANYA TEKS) */
+.nav-svg { display: none; } /* Sembunyikan icon */
+.cart-icon-wrapper { display: none; }
+.cart-badge { display: none; } /* Sembunyikan badge angka */
+
+.nav-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* MOBILE: TAMPILAN HP (HANYA ICON) */
+@media screen and (max-width: 900px) {
+    .nav-text { display: none; } /* Sembunyikan teks */
+    .nav-svg { display: block; } /* Munculkan icon */
+    .cart-icon-wrapper { display: inline-block; position: relative; }
+    
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap !important;
+    }
+    
+    .hamburger { flex: 1; }
+    .logo { flex: 2; display: flex; justify-content: center; }
+    .nav-icons { flex: 1; display: flex; justify-content: flex-end; gap: 15px; }
+    
+    /* Sembunyikan icon Account karena di HP menu log in sudah ada di dalam sidebar hamburger */
+    .account-btn { display: none !important; }
+
+    /* Merapikan badge merah keranjang di atas icon tas */
+    .cart-badge {
+        display: flex;
+        position: absolute;
+        top: -6px;
+        right: -8px;
+        background-color: #111;
+        color: #fff;
+        font-size: 10px;
+        font-family: 'Jost', sans-serif;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        align-items: center;
+        justify-content: center;
+    }
+}
