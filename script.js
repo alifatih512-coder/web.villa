@@ -100,22 +100,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Cart Pop-up (Updated for Icon Badge)
+   // Cart Pop-up (Responsive untuk Teks Desktop & Icon Mobile)
     let cartCount = 0;
-    const cartBadge = document.querySelector('.cart-badge'); 
     const productCards = document.querySelectorAll('.product-card, .add-to-bag-btn');
 
     productCards.forEach(card => {
         card.addEventListener('click', (e) => {
-            // Mencegah link pindah halaman jika yang diklik adalah tombol Add To Bag
+            // Mencegah link pindah halaman jika nge-klik tombol
             if(e.target.closest('.add-to-bag-btn')) {
                 e.preventDefault();
             }
             
             cartCount++;
-            if(cartBadge) {
-                cartBadge.textContent = cartCount;
-            }
+            
+            // 1. Update teks untuk Desktop
+            const cartText = document.querySelector('.cart-btn .nav-text');
+            if(cartText) cartText.textContent = `Cart (${cartCount})`;
+            
+            // 2. Update badge angka untuk Mobile
+            const cartBadge = document.querySelector('.cart-badge');
+            if(cartBadge) cartBadge.textContent = cartCount;
+            
             alert('Item telah ditambahkan ke keranjang eleganmu.');
         });
     });
