@@ -62,26 +62,65 @@ faders.forEach(fader => {
     appearOnScroll.observe(fader);
 });
 
-// 5. UPDATE: Fitur Mega Menu (Mendukung Banyak Dropdown seperti SHOP dan BRAND)
+// 5. UPDATE: Fitur Mega Menu (Mendukung Klik untuk Mobile & Hover untuk Desktop)
 const megaMenuTriggers = document.querySelectorAll('.has-mega-menu');
 const navOverlay = document.querySelector('.nav-overlay');
 
 megaMenuTriggers.forEach(trigger => {
     const currentMegaMenu = trigger.querySelector('.mega-menu');
+    const menuLink = trigger.querySelector('a'); // Ambil link utama (misal: SHOP)
 
     if(currentMegaMenu) {
+        // Interaksi Desktop (Hover)
         trigger.addEventListener('mouseenter', () => {
-            currentMegaMenu.classList.add('show');
-            navOverlay.classList.add('show');
+            if(window.innerWidth > 900) {
+                currentMegaMenu.classList.add('show');
+                navOverlay.classList.add('show');
+            }
         });
 
         trigger.addEventListener('mouseleave', () => {
-            currentMegaMenu.classList.remove('show');
-            navOverlay.classList.remove('show');
+            if(window.innerWidth > 900) {
+                currentMegaMenu.classList.remove('show');
+                navOverlay.classList.remove('show');
+            }
         });
+
+        // Interaksi Mobile (Klik)
+        if(menuLink) {
+            menuLink.addEventListener('click', (e) => {
+                if(window.innerWidth <= 900) {
+                    e.preventDefault(); // Mencegah link pindah halaman langsung di klik pertama
+                    
+                    // Tutup menu lain yang sedang terbuka
+                    document.querySelectorAll('.mega-menu.show').forEach(menu => {
+                        if (menu !== currentMegaMenu) {
+                            menu.classList.remove('show');
+                        }
+                    });
+
+                    currentMegaMenu.classList.toggle('show');
+                    
+                    if (currentMegaMenu.classList.contains('show')) {
+                        navOverlay.classList.add('show');
+                    } else {
+                        navOverlay.classList.remove('show');
+                    }
+                }
+            });
+        }
     }
 });
 
+// Tambahan: Tutup Mega Menu saat bagian overlay gelap diklik di HP
+if(navOverlay) {
+    navOverlay.addEventListener('click', () => {
+        document.querySelectorAll('.mega-menu.show').forEach(menu => {
+            menu.classList.remove('show');
+        });
+        navOverlay.classList.remove('show');
+    });
+}
 // 6. Fitur Buka/Tutup Sidebar Filter di halaman All Products
 const filterHeaders = document.querySelectorAll('.filter-header');
 
