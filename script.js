@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     navLinks.appendChild(mobileAccountDiv);
 
-   // C. Setup Menu Accordion (Mega Menu)
+  // C. Setup Menu Accordion (Mega Menu)
     const megaMenuTriggers = document.querySelectorAll('.has-mega-menu');
     const navOverlay = document.querySelector('.nav-overlay');
 
@@ -28,63 +28,62 @@ document.addEventListener('DOMContentLoaded', () => {
         const link = trigger.querySelector('a');
         const megaMenu = trigger.querySelector('.mega-menu');
 
-        // Tambahkan ikon panah (Chevron 'v')
-        const chevron = document.createElement('span');
-        chevron.classList.add('chevron-icon');
-        chevron.innerHTML = '&#709;'; 
-        
-        // Memperbesar area klik panah khusus untuk jari di HP
-        chevron.style.padding = '10px 20px';
-        chevron.style.marginRight = '-20px';
-        chevron.style.cursor = 'pointer';
-        
-        link.appendChild(chevron);
+        // CEK AMAN: Hanya jalankan script jika elemen .mega-menu benar-benar ada
+        if (megaMenu) {
+            // Tambahkan ikon panah (Chevron 'v')
+            const chevron = document.createElement('span');
+            chevron.classList.add('chevron-icon');
+            chevron.innerHTML = '&#709;'; 
+            link.appendChild(chevron);
 
-        // Interaksi Klik Khusus Layar HP (Mobile)
-        link.addEventListener('click', (e) => {
-            if(window.innerWidth <= 900) {
-                // Cek apakah yang diklik adalah area panah (Chevron)
-                if (e.target === chevron) {
-                    e.preventDefault(); // Blokir pindah halaman, hanya buka dropdown
+            // Interaksi Klik Khusus Layar HP (Mobile)
+            link.addEventListener('click', (e) => {
+                if(window.innerWidth <= 900) {
+                    e.preventDefault(); 
 
                     // Tutup menu lain yang sedang terbuka
                     megaMenuTriggers.forEach(otherTrigger => {
                         if (otherTrigger !== trigger) {
                             const otherMenu = otherTrigger.querySelector('.mega-menu');
                             const otherChevron = otherTrigger.querySelector('.chevron-icon');
-                            if(otherMenu) otherMenu.classList.remove('show-mobile');
-                            if(otherChevron) otherChevron.style.transform = 'rotate(0deg)';
+                            
+                            // Pastikan menu lainnya punya dropdown sebelum mencoba menutupnya
+                            if (otherMenu) {
+                                otherMenu.classList.remove('show-mobile');
+                            }
+                            if (otherChevron) {
+                                otherChevron.style.transform = 'rotate(0deg)';
+                            }
                         }
                     });
 
-                    // Buka/tutup menu yang panahnya diklik
-                    if(megaMenu) {
-                        megaMenu.classList.toggle('show-mobile');
-                        if(megaMenu.classList.contains('show-mobile')) {
-                            chevron.style.transform = 'rotate(180deg)';
-                        } else {
-                            chevron.style.transform = 'rotate(0deg)';
-                        }
+                    // Buka/tutup menu yang sedang diklik
+                    megaMenu.classList.toggle('show-mobile');
+                    
+                    // Putar panah
+                    if(megaMenu.classList.contains('show-mobile')) {
+                        chevron.style.transform = 'rotate(180deg)';
+                    } else {
+                        chevron.style.transform = 'rotate(0deg)';
                     }
-                } 
-                // JIKA YANG DIKLIK ADALAH TEKS (Contoh: "SHOP"), KODE AKAN DIBIARKAN PINDAH HALAMAN
-            }
-        });
+                }
+            });
 
-        // Interaksi Hover Khusus Layar Laptop (Desktop)
-        trigger.addEventListener('mouseenter', () => {
-            if(window.innerWidth > 900 && megaMenu) {
-                megaMenu.classList.add('show');
-                if(navOverlay) navOverlay.classList.add('show');
-            }
-        });
+            // Interaksi Hover Khusus Layar Laptop (Desktop)
+            trigger.addEventListener('mouseenter', () => {
+                if(window.innerWidth > 900) {
+                    megaMenu.classList.add('show');
+                    if(navOverlay) navOverlay.classList.add('show');
+                }
+            });
 
-        trigger.addEventListener('mouseleave', () => {
-            if(window.innerWidth > 900 && megaMenu) {
-                megaMenu.classList.remove('show');
-                if(navOverlay) navOverlay.classList.remove('show');
-            }
-        });
+            trigger.addEventListener('mouseleave', () => {
+                if(window.innerWidth > 900) {
+                    megaMenu.classList.remove('show');
+                    if(navOverlay) navOverlay.classList.remove('show');
+                }
+            });
+        }
     });
 
     // D. Fungsi Buka/Tutup Layar Menu Penuh
