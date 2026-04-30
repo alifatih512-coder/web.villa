@@ -1835,6 +1835,28 @@ html { scroll-behavior: smooth; }
         display: inline-block;
         padding: 0 15px;
     }
+    /* =======================================================
+   MEMBALIK URUTAN FILTER DAN PRODUK DI MOBILE
+   ======================================================= */
+@media screen and (max-width: 900px) {
+    .shop-page {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Memaksa area produk naik ke urutan pertama */
+    .shop-content {
+        order: 1; 
+    }
+    
+    /* Memaksa area filter turun ke urutan kedua (di bawah produk) */
+    .shop-sidebar {
+        order: 2; 
+        margin-top: 50px; /* Memberi jarak antara produk terakhir dan filter */
+        border-top: 2px solid #111; /* Opsional: Garis batas pemisah */
+        padding-top: 20px;
+    }
+}
     
     /* Merapikan Mega Menu di HP agar ke bawah (Stack) */
     .mega-menu-inner {
