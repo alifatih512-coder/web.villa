@@ -2078,3 +2078,61 @@ html { scroll-behavior: smooth; }
     .vibe-card { width: 100%; max-width: 280px; }
     .test-content { margin-top: 100px; margin-bottom: 40px; }
 }
+/* =======================================================
+   STYLING ICON NAVBAR & LAYOUT HEADER
+   ======================================================= */
+
+/* Memaksa Navbar tetap dalam 1 baris */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap !important; 
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-icons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Transisi Halus Saat Icon Di-hover */
+.nav-icons svg {
+    transition: stroke 0.3s ease;
+}
+.nav-icons svg:hover {
+    stroke: #888;
+}
+
+/* Mempercantik Badge Angka di Keranjang */
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background-color: #111;
+    color: #fff;
+    font-size: 10px;
+    font-family: 'Jost', sans-serif;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Khusus Tampilan Layar HP (Mobile) */
+@media screen and (max-width: 900px) {
+    .hamburger { flex: 1; }
+    .logo { flex: 2; }
+    .nav-icons { flex: 1; gap: 12px; }
+    
+    /* Sembunyikan ikon Account di Mobile karena sudah ada di dalam Hamburger Menu */
+    .account-btn { display: none !important; }
+}
