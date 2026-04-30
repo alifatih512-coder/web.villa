@@ -2196,3 +2196,77 @@ html { scroll-behavior: smooth; }
         justify-content: center;
     }
 }
+/* =======================================================
+   PERBAIKAN DESKTOP (MENYEMBUNYIKAN ELEMEN MOBILE)
+   ======================================================= */
+/* 1. Cegah tulisan T H E N O T E patah ke bawah */
+.logo h1 {
+    white-space: nowrap !important;
+}
+
+/* 2. Sembunyikan elemen mobile yang disuntikkan JS di desktop */
+.mobile-account {
+    display: none;
+}
+.chevron-icon {
+    display: none;
+}
+
+/* 3. Rapikan jarak Ikon di Desktop */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+.nav-icons svg {
+    color: #111; /* Warna ikon hitam */
+}
+
+
+/* =======================================================
+   PERBAIKAN MOBILE (MAX 900px)
+   ======================================================= */
+@media screen and (max-width: 900px) {
+    /* Munculkan kembali elemen khusus mobile */
+    .mobile-account {
+        display: block;
+    }
+    
+    .chevron-icon {
+        display: inline-block;
+        float: right; /* Buat panah rata kanan di dalam menu mobile */
+        font-size: 14px;
+        color: #888;
+    }
+
+    /* Pastikan link menu mobile membentang penuh agar panahnya bisa di kanan */
+    .nav-links > li > a {
+        display: block !important;
+        width: 100%;
+    }
+
+    /* Setelan Navbar Mobile seperti SKIN1004 */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 5%;
+    }
+    
+    .hamburger { 
+        flex: 0 0 24px !important; 
+    }
+    
+    .logo { 
+        flex: 1; 
+        display: flex;
+        justify-content: center;
+    }
+    
+    .nav-icons { 
+        flex: 0 0 auto !important; 
+        gap: 15px; 
+    }
+    
+    .account-btn { display: none !important; } /* Sembunyikan icon user di header mobile */
+}
