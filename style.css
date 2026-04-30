@@ -2129,9 +2129,18 @@ html { scroll-behavior: smooth; }
 
 /* Khusus Tampilan Layar HP (Mobile) */
 @media screen and (max-width: 900px) {
-    .hamburger { flex: 1; }
-    .logo { flex: 2; }
-    .nav-icons { flex: 1; gap: 12px; }
+    .hamburger { 
+        flex: 0 0 24px !important; /* Mengunci lebar hamburger pas di 24px, tidak boleh melar */
+    }
+    .logo { 
+        flex: 1; 
+        display: flex;
+        justify-content: center;
+    }
+    .nav-icons { 
+        flex: 0 0 auto !important; /* Menyesuaikan dengan lebar icon saja */
+        gap: 12px; 
+    }
     
     /* Sembunyikan ikon Account di Mobile karena sudah ada di dalam Hamburger Menu */
     .account-btn { display: none !important; }
