@@ -2292,3 +2292,21 @@ html { scroll-behavior: smooth; }
     
     .account-btn { display: none !important; } /* Sembunyikan icon user di header mobile */
 }
+/* =======================================================
+   MENGATUR FOTO MENU (MUNCUL DI DESKTOP, HILANG DI HP)
+   ======================================================= */
+
+/* 1. Pengaturan Default untuk Desktop (Layar Besar) */
+.menu-image {
+    display: flex !important; /* Memaksa foto selalu muncul di Desktop */
+    flex-direction: column;
+    align-items: center;
+    max-width: 250px;
+}
+
+/* 2. Pengaturan Khusus untuk HP (Layar di bawah 900px) */
+@media screen and (max-width: 900px) {
+    .menu-image {
+        display: none !important; /* Memaksa foto hilang KHUSUS di HP */
+    }
+}
